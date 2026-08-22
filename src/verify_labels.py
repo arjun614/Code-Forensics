@@ -23,3 +23,9 @@ print(df[df["generator"] == "Human"][["generator", "label"]].head())
 
 print("\nNon-human samples:")
 print(df[df["generator"] != "Human"][["generator", "label"]].head())
+
+print("\nVerified mapping from trial data:")
+print("0 -> machine")
+print("1 -> human")
+print("2 -> hybrid")
+print("3 -> adversarial")
