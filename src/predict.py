@@ -1,5 +1,6 @@
 import joblib
 from scipy.sparse import hstack
+from forensic_analysis import analyze_code
 
 label_names = {
     0: "Machine-generated",
@@ -39,7 +40,14 @@ def predict_code(code):
     }
     confidence = probabilities[prediction] * 100
 
-    return label_names[prediction], confidence, all_confidences
+    forensic_results = analyze_code(code)
+
+    return (
+    label_names[prediction],
+    confidence,
+    all_confidences,
+    forensic_results
+)
 
 
 # Test code
@@ -48,7 +56,7 @@ def add(a, b):
     return a + b
 """
 
-result, confidence, all_confidences = predict_code(sample_code)
+result, confidence, all_confidences, forensic_results = predict_code(sample_code)
 
 print("Prediction:", result)
 print("Confidence:", round(confidence, 2), "%")
@@ -56,3 +64,8 @@ print("\nAll class probabilities:")
 
 for label, probability in all_confidences.items():
     print(f"{label}: {probability}%")
+
+print("\nForensic Analysis:")
+
+for indicator, value in forensic_results.items():
+    print(f"{indicator}: {value}")
