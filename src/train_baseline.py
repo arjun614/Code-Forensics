@@ -1,4 +1,5 @@
 import pandas as pd
+import joblib
 
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -89,3 +90,18 @@ cm = confusion_matrix(y_test, predictions)
 
 print("\nConfusion Matrix:\n")
 print(cm)
+
+# Save trained model and vectorizers
+joblib.dump(model, "models/code_detector_model.pkl")
+
+joblib.dump(
+    word_vectorizer,
+    "models/word_vectorizer.pkl"
+)
+
+joblib.dump(
+    char_vectorizer,
+    "models/char_vectorizer.pkl"
+)
+
+print("\nModel and vectorizers saved successfully!")
