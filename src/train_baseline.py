@@ -28,8 +28,9 @@ X_train, X_test, y_train, y_test = train_test_split(
 
 # 3. Convert code into numerical features using TF-IDF
 vectorizer = TfidfVectorizer(
-    max_features=20000,
-    ngram_range=(1, 2)
+    analyzer="char",
+    ngram_range=(3, 5),
+    max_features=30000
 )
 
 X_train_tfidf = vectorizer.fit_transform(X_train)
