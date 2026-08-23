@@ -4,6 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report, f1_score, confusion_matrix
+from scipy.sparse import hstack
 
 
 # 1. Load dataset
@@ -27,15 +28,29 @@ X_train, X_test, y_train, y_test = train_test_split(
 
 
 # 3. Convert code into numerical features using TF-IDF
-vectorizer = TfidfVectorizer(
+word_vectorizer = TfidfVectorizer(
+    analyzer="word",
+    ngram_range=(1, 2),
+    max_features=20000
+)
+
+char_vectorizer = TfidfVectorizer(
     analyzer="char",
     ngram_range=(3, 5),
     max_features=30000
 )
 
-X_train_tfidf = vectorizer.fit_transform(X_train)
+# Word features
+X_train_word = word_vectorizer.fit_transform(X_train)
+X_test_word = word_vectorizer.transform(X_test)
 
-X_test_tfidf = vectorizer.transform(X_test)
+# Character features
+X_train_char = char_vectorizer.fit_transform(X_train)
+X_test_char = char_vectorizer.transform(X_test)
+
+# Combine both features
+X_train_tfidf = hstack([X_train_word, X_train_char])
+X_test_tfidf = hstack([X_test_word, X_test_char])
 
 
 # 4. Create and train the model
