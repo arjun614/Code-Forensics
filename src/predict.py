@@ -1,6 +1,6 @@
 import joblib
 from scipy.sparse import hstack
-from forensic_analysis import analyze_code
+from src.forensic_analysis import analyze_code
 
 label_names = {
     0: "Machine-generated",
