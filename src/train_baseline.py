@@ -56,7 +56,8 @@ X_test_tfidf = hstack([X_test_word, X_test_char])
 # 4. Create and train the model
 model = LogisticRegression(
     max_iter=1000,
-    class_weight="balanced"
+    class_weight="balanced",
+    C=2.0
 )
 
 model.fit(X_train_tfidf, y_train)
