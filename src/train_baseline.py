@@ -39,7 +39,8 @@ X_test_tfidf = vectorizer.transform(X_test)
 
 # 4. Create and train the model
 model = LogisticRegression(
-    max_iter=1000
+    max_iter=1000,
+    class_weight="balanced"
 )
 
 model.fit(X_train_tfidf, y_train)
