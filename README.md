@@ -1,12 +1,11 @@
 # 🔍 Code Forensics
 
-An AI-powered code analysis system that classifies source code as **Machine-generated, Human-written, Hybrid, or Adversarial** using Machine Learning. The application combines **TF-IDF-based feature extraction** with a **Logistic Regression model** and provides confidence scores, class probabilities, and structural forensic analysis.
+A code analysis system that classifies source code as **Machine-generated, Human-written, Hybrid, or Adversarial** using Machine Learning. The application combines **TF-IDF-based feature extraction** with a **Logistic Regression model** and provides confidence scores, class probabilities, and structural forensic analysis.
 
 ---
 
 ## 📌 Features
 
-- 🤖 AI-based code classification
 - 🧠 Classifies code into four categories:
   - Machine-generated
   - Human-written
